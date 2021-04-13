@@ -10,9 +10,10 @@ body{
     --white: #F4F3F3;
     --red: #D11212;
     --bg--green :#8DF0C0;
+    --bg--red :#F2DBDB;
 }
 .container:nth-child(2){
-    margin-left: 400px;
+    margin-left: 300px;
 }
 #form__container{
     margin-top:60px;
@@ -67,22 +68,48 @@ button{
     background-color: var(--red);
 }
 
-#container__disponible{
+.container__info{
     font-family: 'Roboto', sans-serif;
     margin-top: 56px;
 }
-#container__disponible h2{
+.container__info h2{
     font-weight: 400;
     margin-bottom: 12px;
 }
-#container__disponible #disponible{
+.container__info #disponible{
     border-radius: 4px;
     background-color:var(--bg--green);
-    width: 120px;
     padding: 16px 40px 16px 16px;
     font-size: 24px;
     font-weight: 500;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
+}
+#container__cards__gastos{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+}
+.container__info #gastos{
+    border-radius: 4px;
+    background-color:var(--bg--red);
+    padding: 16px 40px 16px 16px;
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+.gastos__info__titulo{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#span__gastos__tipo,#span__gastos__cantidad{
+    font-weight: 500;
+    font-size: 20px;
+}
+#gastos{
+    margin-right: 20px;
+    margin-top: 20px;
 }
