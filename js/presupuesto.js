@@ -55,6 +55,8 @@ let disponible;
 let total =0;
 let gastos=[];
 
+let gastocantidad;
+let gastotipo;
 
 /* funciones */
 formdinero.addEventListener('submit',ingresarDinero)
@@ -62,12 +64,10 @@ function ingresarDinero(e){
     e.preventDefault();
     let dinero = parseFloat(inputdinero.value);
     if(dinero === ''){
-        console.log("campo vacio")
         error__form__dinero.textContent ='Campo vacio';
         return false;
     }else if(isNaN(dinero)){
         error__form__dinero.textContent ='No es un numero';
-        console.log("no es un numero")
         return false;
     }
     error__form__dinero.textContent ='';
@@ -84,22 +84,39 @@ function ingresarDinero(e){
 }
 
 /* ingresar gasto */
+inputgastotipo.addEventListener('blur',comprobarTipo);
+function comprobarTipo(){
+    gastotipo =inputgastotipo.value;
+    if(gastotipo === ''){
+        error__gasto__tipo.textContent = 'Campo vacio'
+        return false;
+    }else if(parseFloat(gastotipo)){
+        error__gasto__tipo.textContent = 'Solo palabras'
+        return false;
+    }
+    error__gasto__tipo.textContent = '';
+    return gastotipo;
+}
+
+inputgastocantidad.addEventListener('blur',comprobarCantidad);
+function comprobarCantidad(){
+    gastocantidad = parseFloat(inputgastocantidad.value);
+    if(gastocantidad === ''){
+        error__gasto__cantidad.textContent = 'Campo vacio'
+        return false;
+    }else if(isNaN(gastocantidad)){
+        error__gasto__cantidad.textContent = 'No es un numero'
+        return false;
+    }
+    error__gasto__cantidad.textContent = '';
+    return gastocantidad;
+}
+
 formgasto.addEventListener('submit',ingresarGasto);
 function ingresarGasto(e){
         e.preventDefault();
-        let gastotipo =inputgastotipo.value;
-        let gastocantidad = parseFloat(inputgastocantidad.value);
-        if(gastotipo === ''){
-            error__gasto__tipo.textContent = 'Campo vacio'
-            return false;
-        }
-        if(gastocantidad === ''){
-            error__gasto__cantidad.textContent = 'Campo vacio'
-            return false;
-        }else if(isNaN(gastocantidad)){
-            console.log("no es un numero")
-            return false;
-        }
+        comprobarTipo();
+        comprobarCantidad()
         formgasto.reset()
         let gasto ={
             tipo:gastotipo,
