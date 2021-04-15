@@ -3,7 +3,7 @@ let inputdinero =document.getElementById('dinero__input');
 let formdinero= document.getElementById('form__dinero');
 let error__form__dinero = document.getElementById('error__dinero');
 let disponiblehtml = document.getElementById('span__disponible');
-
+let containerdisponiblehtml = document.getElementById('disponible');
 
 /* variables form gasto */
 let inputgastotipo =document.getElementById('tipo__gasto');
@@ -37,6 +37,9 @@ class Disponible{
 
 class UI extends Disponible{
     escribirDisponible(){
+        if(total <0){
+            containerdisponiblehtml.style.background ='#F2DBDB';
+        }
         disponiblehtml.textContent=total;
     }
     escribirGastos(){
@@ -79,6 +82,10 @@ function ingresarDinero(e){
         error__form__dinero.textContent ='No es un numero';
         return false;
     }
+    else if(dinero <= 0){
+        error__form__dinero.textContent ='Es menor a 0';
+        return false;
+    }
     error__form__dinero.textContent ='';
     formdinero.reset()
     
@@ -114,6 +121,10 @@ function comprobarCantidad(e){
         e.preventDefault()
     }else if(isNaN(gastocantidad)){
         error__gasto__cantidad.textContent = 'No es un numero'
+        e.preventDefault()
+    }
+    else if(gastocantidad <= 0){
+        error__gasto__cantidad.textContent ='Menor a 0'
         e.preventDefault()
     }
     error__gasto__cantidad.textContent = '';
