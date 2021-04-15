@@ -9,7 +9,7 @@ let disponiblehtml = document.getElementById('span__disponible');
 let inputgastotipo =document.getElementById('tipo__gasto');
 let inputgastocantidad =document.getElementById('cantidad__gasto');
 let formgasto= document.getElementById('form__gasto');
-let gastoscontainerhtml= document.getElementById('gastos');
+let gastoscontainerhtml= document.getElementById('container__cards__gastos');
 let error__gasto__tipo = document.getElementById('error__gasto__tipo');
 let error__gasto__cantidad = document.getElementById('error__gasto__cantidad');
 /* clases */
@@ -42,7 +42,16 @@ class UI extends Disponible{
     escribirGastos(){
         gastoscontainerhtml.innerHTML='';
         gastos.forEach(gasto =>{
-            gastoscontainerhtml.innerHTML+=`<li>${gasto.tipo} ${gasto.cantidad}</li>`;
+            gastoscontainerhtml.innerHTML+=`
+            <div id="gastos">
+            <div class="info__detail"> 
+                <span class="gastos__info__titulo">Tipo</span> <span id="span__gastos__tipo">${gasto.tipo}</span>
+            </div>
+            <div class="info__detail">
+                <span class="gastos__info__titulo">Cantidad</span> <span id="span__gastos__cantidad">$${gasto.cantidad}</span>
+            </div>
+        </div>
+            `;
         })
         
     }
@@ -85,31 +94,29 @@ function ingresarDinero(e){
 
 /* ingresar gasto */
 inputgastotipo.addEventListener('blur',comprobarTipo);
-function comprobarTipo(){
+function comprobarTipo(e){
     gastotipo =inputgastotipo.value;
     if(gastotipo === ''){
         error__gasto__tipo.textContent = 'Campo vacio'
-        return false;
+        e.preventDefault()
     }else if(parseFloat(gastotipo)){
         error__gasto__tipo.textContent = 'Solo palabras'
-        return false;
+        e.preventDefault()
     }
     error__gasto__tipo.textContent = '';
-    return gastotipo;
 }
 
 inputgastocantidad.addEventListener('blur',comprobarCantidad);
-function comprobarCantidad(){
+function comprobarCantidad(e){
     gastocantidad = parseFloat(inputgastocantidad.value);
     if(gastocantidad === ''){
         error__gasto__cantidad.textContent = 'Campo vacio'
-        return false;
+        e.preventDefault()
     }else if(isNaN(gastocantidad)){
         error__gasto__cantidad.textContent = 'No es un numero'
-        return false;
+        e.preventDefault()
     }
     error__gasto__cantidad.textContent = '';
-    return gastocantidad;
 }
 
 formgasto.addEventListener('submit',ingresarGasto);

@@ -76,7 +76,7 @@ button{
     font-weight: 400;
     margin-bottom: 12px;
 }
-.container__info #disponible{
+#disponible{
     border-radius: 4px;
     background-color:var(--bg--green);
     padding: 16px 40px 16px 16px;
@@ -86,30 +86,40 @@ button{
     flex-flow: row nowrap;
     justify-content: flex-start;
 }
+/* card gastos */
 #container__cards__gastos{
     display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 320px 320px;
 }
-.container__info #gastos{
+#gastos{
     border-radius: 4px;
     background-color:var(--bg--red);
-    padding: 16px 40px 16px 16px;
+    padding: 16px 20px;
     font-size: 24px;
     font-weight: 500;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    margin-right: 20px;
+    margin-top: 20px;
 }
+/* container de spans */
+.info__detail{
+    display: flex;
+    justify-content: space-between;
+}
+.info__detail:nth-child(2){
+    margin-top: 8px;
+}
+
 .gastos__info__titulo{
     font-weight: 400;
     font-size: 20px;
 }
-
 #span__gastos__tipo,#span__gastos__cantidad{
     font-weight: 500;
     font-size: 20px;
 }
-#gastos{
-    margin-right: 20px;
-    margin-top: 20px;
+#span__gastos__tipo,#span__gastos__cantidad{
+    margin-left: 28px;
 }
