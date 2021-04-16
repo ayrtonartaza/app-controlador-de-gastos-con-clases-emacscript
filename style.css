@@ -13,7 +13,7 @@ body{
     --bg--red :#F2DBDB;
 }
 .container:nth-child(2){
-    margin-left: 300px;
+    margin-left: 140px;
 }
 #form__container{
     margin-top:60px;
@@ -84,9 +84,12 @@ button{
     font-weight: 500;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    width: 140px;
 }
 /* card gastos */
+#titulo__container__gastos{
+    margin-bottom: 2px;
+}
 #container__cards__gastos{
     display: grid;
     grid-template-columns: 320px 320px;
@@ -122,4 +125,55 @@ button{
 }
 #span__gastos__tipo,#span__gastos__cantidad{
     margin-left: 28px;
+}
+
+@media screen and (max-width:1000px){
+    body{
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    .container{
+        display: flex;
+        flex-flow: row;
+    }
+    .container:nth-child(2){
+        margin-left: 0px;
+    }
+    .container__info{
+        margin-top: 50px;
+        margin-left: 30px;
+    }
+    #container__cards__gastos{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:720px){
+    form{
+        width: 80%;
+    }
+    .container{
+        display: flex;
+        flex-flow: column;
+    }
+    .container:nth-child(2){
+        margin-left: 0px;
+    }
+    .container__info{
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width:560px){
+    body{
+        margin: auto 20px;
+    }
+    form{
+        width: 100%;
+    }
+    #container__cards__gastos{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
