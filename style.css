@@ -11,6 +11,7 @@ body{
     --red: #D11212;
     --bg--green :#8DF0C0;
     --bg--red :#F2DBDB;
+    --bg--container--expenses:#f3eded;
 }
 .container:nth-child(2){
     margin-left: 140px;
@@ -51,7 +52,8 @@ small{
     text-align: right;
     margin-top: 4px;
 }
-button{
+/* botones */
+.ingresar__dinero, .btn_gasto{
     width: 100%;
     margin-top: 12px;
     margin-bottom: 0;
@@ -64,10 +66,25 @@ button{
     color: var(--white);
     box-shadow: 0px 2px 2px rgba(209, 135, 135, 0.6);
 }
+.ingresar__dinero{
+    background-color: var(--green);
+}
 .btn_gasto{
     background-color: var(--red);
 }
-
+.buttoneliminar{
+    margin-top: 12px;
+    margin-bottom: 0;
+    height: 46px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: transparent;
+    border: 2px solid var(--red);
+    color: var(--red);
+}
+/* card disponible */
 .container__info{
     font-family: 'Roboto', sans-serif;
     margin-top: 56px;
@@ -93,6 +110,13 @@ button{
 #container__cards__gastos{
     display: grid;
     grid-template-columns: 320px 320px;
+    background-color: var(--bg--container--expenses);
+    height: min-content;
+    min-height: 200px;
+    width: fit-content;
+    padding:0px 12px 12px 0px;
+    border-radius: 4px;
+    margin-top: 8px;
 }
 #gastos{
     border-radius: 4px;
@@ -103,8 +127,8 @@ button{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    margin-right: 20px;
-    margin-top: 20px;
+    margin-left: 12px;
+    margin-top: 12px;
 }
 /* container de spans */
 .info__detail{
@@ -127,6 +151,14 @@ button{
     margin-left: 28px;
 }
 
+.form__editar{
+    position: absolute;
+   /*  top: 370px;
+    margin: auto; */
+    background-color: white;
+    padding: 32px;
+    border: solid 2px black;
+}
 @media screen and (max-width:1000px){
     body{
         display: flex;

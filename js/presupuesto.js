@@ -28,10 +28,22 @@ class Disponible{
         })  
         return gastos;
     }
+    
     restarGastosaDisponible(){
         total  -= this.gastocantidad;
         return total;
     }
+    
+    eliminarGastos(gastos){
+        for (let i = 0; i < gastos.length; i++) {
+            if(gastos[i].id == gastoid){
+                gastos.splice(i,1)
+            }
+        }
+        total += parseFloat(gastocantidad);
+        console.log(total)
+       return total;
+     }
 }
 
 
@@ -39,6 +51,9 @@ class UI extends Disponible{
     escribirDisponible(){
         if(total <0){
             containerdisponiblehtml.style.background ='#F2DBDB';
+        }
+        else{
+            containerdisponiblehtml.style.background ='#8DF0C0';
         }
         disponiblehtml.textContent=total;
     }
@@ -51,8 +66,9 @@ class UI extends Disponible{
                 <span class="gastos__info__titulo">Tipo</span> <span id="span__gastos__tipo">${gasto.tipo}</span>
             </div>
             <div class="info__detail">
-                <span class="gastos__info__titulo">Cantidad</span> <span id="span__gastos__cantidad">$${gasto.cantidad}</span>
+                <span class="gastos__info__titulo">Cantidad</span> <span id="span__gastos__cantidad" class="gastocantidadspan">${gasto.cantidad}</span>
             </div>
+            <button class='buttoneliminar' id="${gasto.id}">Eliminar</button>
         </div>
             `;
         })
@@ -66,7 +82,7 @@ let ui;
 let disponible;
 let total =0;
 let gastos=[];
-
+let gasto;
 let gastocantidad;
 let gastotipo;
 
@@ -136,9 +152,10 @@ function ingresarGasto(e){
         comprobarTipo();
         comprobarCantidad()
         formgasto.reset()
-        let gasto ={
+        gasto ={
             tipo:gastotipo,
-            cantidad:gastocantidad
+            cantidad:gastocantidad,
+            id:Date.now()
         }
         gastos.push(gasto)
 
@@ -151,3 +168,19 @@ function ingresarGasto(e){
         ui.escribirDisponible()
         ui.escribirGastos()
 }
+
+gastoscontainerhtml.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('buttoneliminar')){
+        gastoid = e.target.id;
+        gastocantidad=e.target.parentElement.querySelector('.info__detail .gastocantidadspan').textContent;
+        disponible = new Disponible(gastos)
+        disponible.obtenerGastos(gastos)
+        disponible.eliminarGastos(gastos);
+        console.log(gastoid)
+        console.log(gastocantidad)
+        ui = new UI();
+        ui.escribirDisponible()
+        ui.escribirGastos()
+    }
+   
+})
