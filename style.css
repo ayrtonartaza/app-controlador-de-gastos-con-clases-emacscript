@@ -1,9 +1,9 @@
 body{
     font-size: 16px;
-    margin: auto 40px;
+    margin: auto 20px;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
 }
 :root {
     --green: #11A15C;
@@ -13,19 +13,19 @@ body{
     --bg--red :#F2DBDB;
     --bg--container--expenses:#f3eded;
 }
-.container:nth-child(2){
+/* .container:nth-child(2){
     margin-left: 140px;
-}
-#form__container{
+} */
+.form__container{
     margin-top:60px;
     font-family: 'Roboto', sans-serif;
 }
-#form__container h2{
+.form__container h2{
     font-weight: 400;
     font-size: 16px;
 }
 form{
-    width: 200px;
+    width: 100%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -101,15 +101,18 @@ small{
     font-weight: 500;
     display: flex;
     flex-flow: row nowrap;
-    width: 140px;
+    width: 200px;
 }
 /* card gastos */
+
 #titulo__container__gastos{
     margin-bottom: 2px;
 }
 #container__cards__gastos{
+    min-width: 100%;
+    max-width: 100%;
     display: grid;
-    grid-template-columns: 320px 320px;
+    grid-template-columns: 100%;
     background-color: var(--bg--container--expenses);
     height: min-content;
     min-height: 200px;
@@ -150,7 +153,6 @@ small{
 #span__gastos__tipo,#span__gastos__cantidad{
     margin-left: 28px;
 }
-
 .form__editar{
     position: absolute;
    /*  top: 370px;
@@ -159,53 +161,54 @@ small{
     padding: 32px;
     border: solid 2px black;
 }
-@media screen and (max-width:1000px){
+
+
+@media screen and (min-width:560px){
     body{
-        display: flex;
-        flex-flow: column nowrap;
+        margin: auto 32px;
     }
-    .container{
-        display: flex;
-        flex-flow: row;
-    }
-    .container:nth-child(2){
-        margin-left: 0px;
-    }
-    .container__info{
-        margin-top: 50px;
-        margin-left: 30px;
+    form{
+        width: 70%;
     }
     #container__cards__gastos{
-        display: grid;
+        width: 80%;
+    }
+}
+@media screen and (min-width:800px){
+    body{
+        margin: auto 32px;
+    }
+    form{
+        width: 50%;
+    }
+    #container__cards__gastos{
+        width: 100%;
         grid-template-columns: 1fr 1fr;
     }
 }
-
-@media screen and (max-width:720px){
-    form{
-        width: 80%;
-    }
-    .container{
-        display: flex;
-        flex-flow: column;
-    }
-    .container:nth-child(2){
-        margin-left: 0px;
-    }
-    .container__info{
-        margin-top: 0px;
-        margin-left: 0px;
-    }
-}
-@media screen and (max-width:560px){
+@media screen and (min-width:1200px){
     body{
-        margin: auto 20px;
+        margin: auto 32px;
+        display: flex;
+        flex-flow: row nowrap;
     }
     form{
-        width: 100%;
+        width: 230px;
+    }
+    #form__container__gasto,#container__info__gastos{
+        margin-left: 50px;
     }
     #container__cards__gastos{
-        display: grid;
-        grid-template-columns: 1fr;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (min-width:1400px){
+    #form__container__gasto,#container__info__gastos{
+        margin-left: 100px;
+    }
+    #container__cards__gastos{
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
