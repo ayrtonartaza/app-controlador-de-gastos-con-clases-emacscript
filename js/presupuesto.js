@@ -15,7 +15,7 @@ let error__gasto__cantidad = document.getElementById('error__gasto__cantidad');
 /* clases */
 class Disponible{
     constructor(disponible){
-        this.disponible = disponible;
+        this.disponible = disponible;z
     }
     obtenerDisponible(){
         total += this.disponible;
