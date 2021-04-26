@@ -15,26 +15,29 @@ let error__gasto__cantidad = document.getElementById('error__gasto__cantidad');
 /* clases */
 class Disponible{
     constructor(disponible){
-        this.disponible = disponible;z
+        this.disponible = disponible;
     }
     obtenerDisponible(){
         total += this.disponible;
+        localStorage.setItem('disponible',JSON.stringify(total))
         return total;
     }
-    obtenerGastos(gastos){
+    obtenerGastos(){
         gastos.forEach(gasto => {
         this.gastotipo = gasto.tipo,
         this.gastocantidad = gasto.cantidad
         })  
+        localStorage.setItem('gastos',JSON.stringify(gastos))
         return gastos;
     }
     
     restarGastosaDisponible(){
         total  -= this.gastocantidad;
+        localStorage.setItem('disponible',JSON.stringify(total))
         return total;
     }
     
-    eliminarGastos(gastos){
+    eliminarGastos(){
         for (let i = 0; i < gastos.length; i++) {
             if(gastos[i].id == gastoid){
                 gastos.splice(i,1)
@@ -42,7 +45,9 @@ class Disponible{
         }
         total += parseFloat(gastocantidad);
         console.log(total)
-       return total;
+        localStorage.setItem('gastos',JSON.stringify(gastos))
+        localStorage.setItem('disponible',JSON.stringify(total))
+        return total;
      }
 }
 
@@ -85,6 +90,31 @@ let gastos=[];
 let gasto;
 let gastocantidad;
 let gastotipo;
+
+/* local storage disponible */
+document.addEventListener('DOMContentLoaded',localStorageDisponible)
+function localStorageDisponible(){
+    if(JSON.parse(localStorage.getItem('disponible'))){
+        total = JSON.parse(localStorage.getItem('disponible'))
+        localStorage.setItem('disponible',JSON.stringify(total))
+        ui = new UI();
+        ui.escribirGastos()
+        ui.escribirDisponible()
+    }
+}
+/* local storage gastos */
+document.addEventListener('DOMContentLoaded',localStorageGastos)
+function localStorageGastos(){
+    if(JSON.parse(localStorage.getItem('gastos'))){
+        gastos=JSON.parse(localStorage.getItem('gastos'));
+        localStorage.setItem('gastos',JSON.stringify(gastos))
+        ui = new UI();
+        ui.escribirGastos()
+       /*  ui.escribirDisponible() */
+    }
+}
+
+
 
 /* funciones */
 formdinero.addEventListener('submit',ingresarDinero)
@@ -161,7 +191,7 @@ function ingresarGasto(e){
 
         /* clase disponible con gastos añadidos */
         disponible = new UI(gastos);
-        disponible.obtenerGastos(gastos);
+        disponible.obtenerGastos();
         disponible.restarGastosaDisponible(gastos);
         /* escribir en html el total con los gastos añadidos*/
         ui = new UI();
@@ -175,7 +205,7 @@ gastoscontainerhtml.addEventListener('click',(e)=>{
         gastocantidad=e.target.parentElement.querySelector('.info__detail .gastocantidadspan').textContent;
         disponible = new Disponible(gastos)
         disponible.obtenerGastos(gastos)
-        disponible.eliminarGastos(gastos);
+        disponible.eliminarGastos();
         console.log(gastoid)
         console.log(gastocantidad)
         ui = new UI();
